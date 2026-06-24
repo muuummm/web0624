@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02互動圖文卡片</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .wrap {
+            width: 1200px;
+            display: flex;
+            /* 自動換行 */
+            flex-wrap: wrap;
+            /* 水平置中 */
+            margin: 50px auto;
+        }
+
+        .item {
+            width: 49%;     /* 應右邊界加大，寬度調整 */
+            height: 400px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            /* 相對定位起始點 */
+            position: relative;
+
+        }
+
+        .item img {
+            width: 100%;
+            height: 100%;
+            /* 自動調整比例 */
+            object-fit: cover;
+        }
+
+        /* 文字區 */
+        .item .txt{
+            background-color: rgba(0,0,0,0.5);
+            color: aliceblue;
+            /* 文字絕對位置依最近父元素，覆蓋於其他元素上方(遮色設定) */
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;    /* 垂直置中 */
+            align-items: center;        /* 水平置中 */
+            
+            /* 隱藏 */
+            opacity: 0;
+        }
+
+        /* 碰到item時顯示 */
+        .item:hover .txt{
+           opacity: 1;
+        }
+
+        .item .txt h2{
+            color: yellow;
+        }
+
+        /* 線段：使用偽元素 */
+        .item .txt h2::after{
+            content: "";
+            display: block;
+            width: 0%;
+            height: 2px;
+            background-color: yellow;
+            margin: 10px 0;
+            /* 漸變效果 */
+            transition: all 0.5s;
+        }
+
+        /* 懸停後變化 */
+        .item:hover .txt h2::after{
+            width: 100%;
+        }
+
+        
+    </style>
+
+</head>
+
+<body>
+    <div class="wrap">
+         <!-- 圖片1 -->
+        <div class="item">
+            <img src="./images/05.jpg" alt="">
+            <div class="txt">
+                <h2> 互動圖文卡片1 </h2>
+                <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
+        </div>    
+        <!-- 圖片2 -->
+        <div class="item">
+            <img src="./images/06.jpg" alt="">
+            <div class="txt">
+                <h2> 互動圖文卡片2 </h2>
+                <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
+        </div>
+        <!-- 圖片3 -->
+        <div class="item">
+            <img src="./images/08.jpg" alt="">
+            <div class="txt">
+                <h2> 互動圖文卡片3 </h2>
+                <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
+        </div>
+        <!-- 圖片4 -->
+        <div class="item">
+            <img src="./images/09.jpg" alt="">
+            <div class="txt">
+                <h2> 互動圖文卡片4 </h2>
+                <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03卡片位移</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgb(14, 49, 70);
+        }
+
+        .wrap {
+            width: 1200px;
+            display: flex;
+            margin: auto;
+            border: 1px solid red;
+        }
+
+        .item {
+            width: 30%;
+            height: 100%;
+            border: 1px solid #fff;
+            margin: auto;
+            background-color: #fff;
+            transform: translateY(0px);    /* 設定卡片預設位置(可省略) */
+            transition: all 300ms;
+
+        }
+
+        .item:hover{
+            /* 向上移動 */
+            transform: translateY(-50px);
+           
+        }
+
+        .item:hover .txt{
+            background: linear-gradient( rgb(217, 217, 255) 10%, #8bb1ac ) ;
+        }
+
+        .item img {
+            width: 100%;
+            height: 50%;
+            vertical-align: top;        /* 去除圖片下方預設留白區 */
+            object-fit: cover;
+
+        }
+
+        .item h2{
+            border-bottom: 2px solid #aaa;
+            padding-bottom: 10px;
+            padding-top: 10px;          /* 部分設定後文字上方空間跑位修正 */
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .item p{
+            line-height: 1.2;           
+        }
+
+        .item .txt{
+            padding: 0 10px 10px 10px;
+            text-align: justify;        /* 文字左右對齊 */
+            position: relative;
+            
+        }
+
+        /* 設定圖片下方三角形 */
+        .item .txt::before{
+            content: "";                /*設定文字前空白 (懸停時變色不做在背景；因三角區若為觸發動態而設為空白，則未觸發時圖片為未遮罩之方形)*/ 
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            border-top: 50px solid transparent;       /* 設定文字前圖片遮罩區域，欲顯示部分(形狀)為透明 */
+           
+            border-left: 180px solid #fff;          /* 利用左右邊界排除出所需之中央三角區域 */
+            border-right: 180px solid #fff;
+
+            transform: translateY(-100%);              /* 將空白以 "%" 位移 →翻轉 (單位為px時僅平行移動無翻轉)) */
+        }
+
+        .item:hover .txt::before{
+            border-left: 180px solid rgb(217, 217, 255);        /*填充觸發後文字區域為漸層上方顏色*/
+            border-right: 180px solid rgb(217, 217, 255);
+        }
+
+        .blank{
+            width: 1000px;
+            /* height: 100vh; */
+            border: 1px solid orange;
+        }
+      
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 卡片1 -->
+        <div class="item">
+            <img src="./images/04.jpg" alt="">
+            <div class="txt">
+                <h2>人名1</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero suscipit doloribus reprehenderit vero
+                    enim quasi fugit asperiores, sunt sapiente quas commodi provident nesciunt quaerat neque, culpa eos
+                    autem, maiores placeat. Ex eum debitis hic cumque quod voluptas delectus laborum, ducimus dolorum
+                    eveniet at eligendi aperiam harum sit aut? Laboriosam, tempore!</p>
+            </div>
+        </div>
+
+        <!-- 卡片2 -->
+        <div class="item">
+            <img src="./images/05.jpg" alt="">
+            <div class="txt">
+                <h2>人名2</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero suscipit doloribus reprehenderit vero
+                    enim quasi fugit asperiores, sunt sapiente quas commodi provident nesciunt quaerat neque, culpa eos
+                    autem, maiores placeat. Ex eum debitis hic cumque quod voluptas delectus laborum, ducimus dolorum
+                    eveniet at eligendi aperiam harum sit aut? Laboriosam, tempore!</p>
+            </div>
+        </div>
+
+        <!-- 卡片3 -->
+        <div class="item">
+            <img src="./images/09.jpg" alt="">
+            <div class="txt">
+                <h2>人名3</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero suscipit doloribus reprehenderit vero
+                    enim quasi fugit asperiores, sunt sapiente quas commodi provident nesciunt quaerat neque, culpa eos
+                    autem, maiores placeat. Ex eum debitis hic cumque quod voluptas delectus laborum, ducimus dolorum
+                    eveniet at eligendi aperiam harum sit aut? Laboriosam, tempore!</p>
+            </div>
+        </div>
+    </div>
+    <div class="blank"></div>
+</body>
+
+</html>
